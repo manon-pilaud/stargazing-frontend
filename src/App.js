@@ -3,6 +3,7 @@ import './App.css';
 import Map from './Map'
 import MoonCalendar from './MoonCalendar'
 import {Route} from "react-router";
+import Navbar from './Navbar'
 class App extends Component {
   state={
     locations: []
@@ -23,6 +24,7 @@ class App extends Component {
 render() {
     return(
       <div>
+        <Navbar/>
         <Route exact={true} path="/map" render={()=>(
           <Map
             locations={this.state.locations}
