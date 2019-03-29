@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { render } from "react-dom";
 import MapGL, {Marker,Popup, NavigationControl, FullscreenControl} from "react-map-gl";
 import Icon from './MapIcon'
+import {Link} from 'react-router-dom'
 
 const MAPBOX_TOKEN =
 process.env.REACT_APP_MAP_API_KEY;
@@ -102,15 +103,14 @@ export default class Map extends Component {
                   closeOnClick={false}
                   onClose={() => this.setState({clickedLocation: ""})} >
                 <div>
-                  <center><h5>{this.state.clickedLocation.name} | {this.state.clickedLocation.country}</h5></center>
+                  <center><h7>{this.state.clickedLocation.name} | {this.state.clickedLocation.country}</h7></center>
                   <br/>
                   <center><img width={240} src={this.state.clickedLocation.image}/></center>
                     <br/>
-                    <center><a target="_new" href={`http://en.wikipedia.org/`}> More Info</a></center>
+                    <center><Link to={`/location/${this.state.clickedLocation.id}`}> More Info</Link></center>
                 </div>
               </Popup>
             :null}
-
           </MapGL>
         );
       }

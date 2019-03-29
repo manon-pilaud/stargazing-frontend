@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Map from './Map'
+import Location from './Location'
 import MoonCalendar from './MoonCalendar'
 import {Route} from "react-router";
 import Navbar from './Navbar'
@@ -31,6 +32,16 @@ render() {
             />
           )}
         />
+      <Route exact={true} path="/location/:id" render={(props)=>{
+            let locationUrlId = props.match.params.id
+            let locationUrlIdInt = parseInt(locationUrlId)
+            let locationInfo = this.state.locations.find(location => location.id === locationUrlIdInt)
+            return locationInfo?(
+              <Location location = {locationInfo}/>
+          ):null
+        }
+      }
+      />
 
       </div>
     )

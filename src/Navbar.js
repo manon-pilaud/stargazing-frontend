@@ -1,17 +1,17 @@
 import React from 'react'
 import {Navbar,Nav,NavItem,NavDropdown,MenuItem} from 'react-bootstrap'
-
+import {Link} from 'react-router-dom'
 
 export default class coolNavbar extends React.Component {
   render() {
     return (
       <div>
           <Navbar bg="dark" variant="dark" id="navbar" sticky="top">
-          <Navbar.Brand href="#home">StarGazing</Navbar.Brand>
+          <Navbar.Brand>StarGazing</Navbar.Brand>
           <Nav className="mr-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#features">Map</Nav.Link>
-            <Nav.Link href="#pricing">Trips</Nav.Link>
+            <Nav.Link><Link className="navlink"  to={'/'}>Home</Link></Nav.Link>
+            <Nav.Link><Link className="navlink" to={'/map'}>StarMap</Link></Nav.Link>
+            <Nav.Link><Link className="navlink">Trips</Link></Nav.Link>
           </Nav>
         </Navbar>
       </div>
