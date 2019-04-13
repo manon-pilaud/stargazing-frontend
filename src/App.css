@@ -42,3 +42,9 @@
 #location-image{
   padding:5px;
 }
+
+#side-info{
+  position: absolute;
+  top:30vh;
+  left:5vw;
+}
