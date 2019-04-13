@@ -103,7 +103,7 @@ export default class Map extends Component {
                   closeOnClick={false}
                   onClose={() => this.setState({clickedLocation: ""})} >
                 <div>
-                  <center><h7>{this.state.clickedLocation.name} | {this.state.clickedLocation.country}</h7></center>
+                  <center><h6><font color="black">{this.state.clickedLocation.name} | {this.state.clickedLocation.country}</font></h6></center>
                   <br/>
                   <center><img width={240} src={this.state.clickedLocation.image}/></center>
                     <br/>

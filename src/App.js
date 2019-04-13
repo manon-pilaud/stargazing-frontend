@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import Map from './Map'
-import Location from './Location'
 import MoonCalendar from './MoonCalendar'
+import Location from './Location'
 import {Route} from "react-router";
 import Navbar from './Navbar'
 class App extends Component {
@@ -26,6 +26,7 @@ render() {
     return(
       <div>
         <Navbar/>
+        <MoonCalendar/>
         <Route exact={true} path="/map" render={()=>(
           <Map
             locations={this.state.locations}

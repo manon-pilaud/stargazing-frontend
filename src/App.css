@@ -38,3 +38,7 @@
  background-image: url("https://images.vailresorts.com/image/upload/ar_4:3,c_fill,dpr_1.0,f_auto,g_auto,q_auto/v1/Vail/Heros/Products/Lodging/Stargazing/Snowcat%20Stargazing%20Hero.jpg");
  height:12vh;
 }
+
+#location-image{
+  padding:5px;
+}
