@@ -33,7 +33,9 @@ const createLocationStyle = {
 export default class Map extends Component {
 
       state = {
+        createForm:false,
         clickedLocation: "",
+        clickedMapCoord:"",
         viewport: {
           width: 400,
           height: 400,
@@ -74,9 +76,22 @@ export default class Map extends Component {
         })
       }
 
+      getCreateForm=()=>{
+        this.setState({
+          createForm: true
+        })
+      }
+
       _updateViewport = (viewport) => {
         this.setState({viewport});
       }
+      mapClicked=(e)=>{
+        console.log(e)
+        if(e.features[0].layer.id !== "water"){
+          this.setState({clickedMapCoord:e.lngLat})
+        }
+      }
+
 
       render() {
         const { viewport } = this.state;
@@ -88,6 +103,7 @@ export default class Map extends Component {
             mapboxApiAccessToken={MAPBOX_TOKEN}
             mapStyle={'mapbox://styles/mandyyp/cjtq7tdec0ywn1ftjz9y7sjnv'}
             children={this.props.children}
+            onClick={(e)=>this.mapClicked(e)}
           >
           <div className="nav" style={navStyle}>
             <NavigationControl onViewportChange={this._updateViewport} />
@@ -98,7 +114,7 @@ export default class Map extends Component {
           </div>
 
           <div className="create_location" style={createLocationStyle}>
-            <div id="create-location-label">
+            <div id="create-location-label" onClick={()=>this.getCreateForm()}>
               Create StarGazing Location
               <br/>
               <center>★</center>
@@ -127,6 +143,17 @@ export default class Map extends Component {
                     <br/>
                     <center><Link to={`/location/${this.state.clickedLocation.id}`}> More Info</Link></center>
                 </div>
+              </Popup>
+            :null}
+            {this.state.createForm?
+              <Popup tipSize={8}
+                anchor="left"
+                longitude={160.544484}
+                latitude={79.963029}
+                closeOnClick={false}
+                onClose={() => this.setState({createForm: false})}
+                >
+                <AddLocation coordinates={this.state.clickedMapCoord}/>
               </Popup>
             :null}
           </MapGL>
