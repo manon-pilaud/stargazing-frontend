@@ -11,7 +11,7 @@ export default class coolNavbar extends React.Component {
           <Nav className="mr-auto">
             <Nav.Link><Link className="navlink"  to={'/home'}>Home</Link></Nav.Link>
             <Nav.Link><Link className="navlink" to={'/map'}>StarMap</Link></Nav.Link>
-            <Nav.Link><Link className="navlink">Trips</Link></Nav.Link>
+            <Nav.Link><Link className="navlink">Your Locations</Link></Nav.Link>
           </Nav>
         </Navbar>
       </div>

@@ -105,7 +105,9 @@ export default class Map extends Component {
                 <div>
                   <center><h6><font color="black">{this.state.clickedLocation.name} | {this.state.clickedLocation.country}</font></h6></center>
                   <br/>
-                  <center><img width={240} src={this.state.clickedLocation.image}/></center>
+                  <Link to={`/location/${this.state.clickedLocation.id}`}>
+                    <center><img width={240} src={this.state.clickedLocation.image}/></center>
+                  </Link>
                     <br/>
                     <center><Link to={`/location/${this.state.clickedLocation.id}`}> More Info</Link></center>
                 </div>

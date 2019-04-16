@@ -46,5 +46,10 @@
 #side-info{
   position: absolute;
   top:30vh;
-  left:5vw;
+  left:0vw;
+}
+
+#side-info-text{
+  position: absolute;
+  left:4vw;
 }
