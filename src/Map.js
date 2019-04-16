@@ -4,6 +4,7 @@ import { render } from "react-dom";
 import MapGL, {Marker,Popup, NavigationControl, FullscreenControl} from "react-map-gl";
 import Icon from './MapIcon'
 import {Link} from 'react-router-dom'
+import AddLocation from './AddLocation'
 
 const MAPBOX_TOKEN =
 process.env.REACT_APP_MAP_API_KEY;
@@ -19,6 +20,13 @@ const fullscreenControlStyle = {
   position: 'absolute',
   top: 0,
   left: 0,
+  padding: '10px'
+};
+
+const createLocationStyle = {
+  position: 'absolute',
+  top: 0,
+  right: 0,
   padding: '10px'
 };
 
@@ -87,6 +95,14 @@ export default class Map extends Component {
 
           <div className="fullscreen" style={fullscreenControlStyle}>
             <FullscreenControl />
+          </div>
+
+          <div className="create_location" style={createLocationStyle}>
+            <div id="create-location-label">
+              Create StarGazing Location
+              <br/>
+              <center>★</center>
+            </div>
           </div>
 
             {this.props.locations.map((location,index)=>

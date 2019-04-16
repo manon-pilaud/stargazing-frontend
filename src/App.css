@@ -53,3 +53,8 @@
   position: absolute;
   left:4vw;
 }
+
+#create-location-label{
+  background-color: white;
+  color:black;
+}
