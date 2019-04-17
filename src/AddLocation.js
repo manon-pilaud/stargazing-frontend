@@ -4,11 +4,25 @@ import {Form,Button,Col} from 'react-bootstrap'
 export default class AddLocation extends PureComponent {
   state={
     name: "",
+    description:"",
     image:"",
     country:"",
     area:"",
-    longitude:"",
+    logitude:"",
     latitude:""
+  }
+
+
+  componentWillUnmount() {
+    this.setState({
+      name: "",
+      description:"",
+      image:"",
+      country:"",
+      area:"",
+      logitude:"",
+      latitude:""
+    })
   }
 
   handleChange=(e)=>{
@@ -21,6 +35,7 @@ export default class AddLocation extends PureComponent {
     e.preventDefault()
     this.props.postLocation(this.state,this.props.coordinates)
   }
+
   render() {
     return (
       <div id="form-create-location">
@@ -29,6 +44,10 @@ export default class AddLocation extends PureComponent {
         <Form.Group>
           <Form.Label>Location Name</Form.Label>
           <Form.Control placeholder="Enter Location Name" name="name" onChange={(e)=>this.handleChange(e)} />
+        </Form.Group>
+        <Form.Group >
+           <Form.Label>Description</Form.Label>
+           <Form.Control as="textarea" rows="3" name="description" onChange={(e)=>this.handleChange(e)}/>
         </Form.Group>
         <Form.Group>
           <Form.Label>Image</Form.Label>

@@ -55,6 +55,10 @@ export default class Map extends Component {
 
       componentWillUnmount() {
         window.removeEventListener("resize", this.resize);
+        this.setState({
+          latitude:"",
+          longitude:""
+        })
       }
 
       resize = () => {
@@ -86,8 +90,10 @@ export default class Map extends Component {
         this.setState({viewport});
       }
       mapClicked=(e)=>{
-        if(e.features[0].layer.id !== "water"){
-          this.setState({clickedMapCoord:e.lngLat})
+        if(this.state.createForm === true){
+          if(e.features[0].layer.id !== "water"){
+            this.setState({clickedMapCoord:e.lngLat})
+          }
         }
       }
 
@@ -150,7 +156,7 @@ export default class Map extends Component {
                 longitude={160.544484}
                 latitude={79.963029}
                 closeOnClick={false}
-                onClose={() => this.setState({createForm: false})}
+                onClose={() => this.setState({createForm: false,clickedMapCoord:""})}
                 >
                 <AddLocation coordinates={this.state.clickedMapCoord}
                 postLocation={this.props.postLocation}/>
