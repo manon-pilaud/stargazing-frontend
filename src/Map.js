@@ -86,7 +86,6 @@ export default class Map extends Component {
         this.setState({viewport});
       }
       mapClicked=(e)=>{
-        console.log(e)
         if(e.features[0].layer.id !== "water"){
           this.setState({clickedMapCoord:e.lngLat})
         }
