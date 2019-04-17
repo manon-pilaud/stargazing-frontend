@@ -19,10 +19,10 @@ export default class AddLocation extends PureComponent {
 
   handleSubmit=(e)=>{
     e.preventDefault()
+    this.props.postLocation(this.state,this.props.coordinates)
   }
   render() {
     return (
-
       <div id="form-create-location">
       <font color="black">
       <Form  onSubmit={(e)=>this.handleSubmit(e)}>

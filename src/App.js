@@ -24,6 +24,10 @@ class App extends Component {
       })
     )
   }
+
+  postLocation=(form,coords)=>{
+    console.log(form,coords)
+  }
 render() {
     return(
       <div>
@@ -31,6 +35,7 @@ render() {
         <Route exact={true} path="/map" render={()=>(
           <Map
             locations={this.state.locations}
+            postLocation={this.postLocation}
             />
           )}
         />

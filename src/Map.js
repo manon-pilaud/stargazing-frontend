@@ -152,7 +152,8 @@ export default class Map extends Component {
                 closeOnClick={false}
                 onClose={() => this.setState({createForm: false})}
                 >
-                <AddLocation coordinates={this.state.clickedMapCoord}/>
+                <AddLocation coordinates={this.state.clickedMapCoord}
+                postLocation={this.props.postLocation}/>
               </Popup>
             :null}
           </MapGL>
