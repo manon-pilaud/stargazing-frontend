@@ -2,6 +2,8 @@ import React, {PureComponent} from 'react';
 import {Form,Button,Col} from 'react-bootstrap'
 
 export default class AddLocation extends PureComponent {
+
+  //Fix form so that you can type even after long lat have been clicked
   state={
     name: "",
     description:"",
@@ -11,7 +13,6 @@ export default class AddLocation extends PureComponent {
     longitude:"",
     latitude:""
   }
-
 
   componentWillUnmount() {
     this.setState({
@@ -45,7 +46,6 @@ static getDerivedStateFromProps(nextProps, prevState){
 }
 
   render() {
-    console.log(this.state)
     return (
       <div id="form-create-location">
       <font color="black">

@@ -25,27 +25,26 @@ class App extends Component {
     )
   }
 
-  postLocation=(form,coords)=>{
-    console.log(form,coords)
-  //   fetch('http://localhost:3000/locations',{
-  //   method: "POST",
-  //   headers:{
-  //     "Content-Type" : "application/json",
-  //     "Accept" : "application/json"
-  //   },
-  //   body: JSON.stringify({
-  //     name: ,
-  //     description: ,
-  //     latitude: ,
-  //     longitude: ,
-  //     category: user_created,
-  //     image: ,
-  //     area: ,
-  //     country: ,
-  //     creator: 1,
-  //
-  //   })
-  // })
+  postLocation=(form)=>{
+    console.log(form)
+    fetch('http://localhost:3000/locations',{
+    method: "POST",
+    headers:{
+      "Content-Type" : "application/json",
+      "Accept" : "application/json"
+    },
+    body: JSON.stringify({
+      name: form.name,
+      description: form.description,
+      latitude: form.latitude ,
+      longitude: form.longitude ,
+      category: "user created",
+      image: form.image,
+      area: form.area,
+      country: form.country,
+      creator: 1,
+    })
+  })
   }
 render() {
     return(
