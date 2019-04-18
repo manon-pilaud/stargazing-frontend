@@ -6,7 +6,8 @@ export default class Home extends React.PureComponent {
    render() {
      return(
        <div>
-         <Trips/>
+         <Trips
+           userLocations={this.props.userLocations}/>
        </div>
      )
    }

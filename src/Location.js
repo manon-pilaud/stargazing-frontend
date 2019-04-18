@@ -13,7 +13,8 @@ export default class Location extends React.Component{
           user_id: 1,
           location_id: location.id
         })
-      })
+      }).then(res=>res.json())
+      .then(data=>this.props.addUserLocation(data))
    }
   render(){
     let {name,description,area,category,country,image,latitude,longitude,rating} = this.props.location
