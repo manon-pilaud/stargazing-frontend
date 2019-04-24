@@ -3,7 +3,7 @@ import {Button} from 'react-bootstrap'
 
 export default class Location extends React.Component{
    visitLocation=(location)=>{
-      fetch('http://localhost:3000/user_locations',{
+      fetch('http://localhost:3000/api/v1/user_locations',{
         method: "POST",
         headers:{
           "Content-Type" : "application/json",

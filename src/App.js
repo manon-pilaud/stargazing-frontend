@@ -4,11 +4,14 @@ import Map from './Map'
 import MoonCalendar from './MoonCalendar'
 import Location from './Location'
 import Home from './Home'
-import {Route} from "react-router";
+import {Route,Switch,Redirect} from "react-router";
 import Navbar from './Navbar'
 import Trips from './Trips'
+import SignUp from './SignUp'
+import SignIn from './SignIn'
 class App extends Component {
   state={
+    currentUser: null,
     locations: [],
     userLocations: []
   }
@@ -16,10 +19,52 @@ class App extends Component {
   componentDidMount(){
     this.fetchLocations()
     this.fetchUserLocations()
+    this.fetchCurrentUser()
   }
 
+  fetchCurrentUser=()=>{
+    let token = localStorage.getItem('token')
+    if(token){
+      fetch(`http://localhost:3000/api/v1/profile`, {
+        method: "GET",
+        headers: {
+          "Authentication": `Bearer ${token}`
+        }
+      })
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          currentUser: data
+        })
+      })
+    }
+  }
+
+    handleLoginSubmit = (username, password) => {
+    fetch(`http://localhost:3000/api/v1/login`, {
+      method: "POST",
+        headers: {
+          "Content-Type":"application/json",
+          "Accept":"application/json"
+        },
+        body: JSON.stringify({
+          username:username,
+          password:password
+        })
+    })
+    .then(res =>res.json())
+    .then(data => {
+      if(data.error){
+        alert('Incorrect username or password')
+      }else{
+        this.setState({currentUser: data.user })
+        localStorage.setItem("token", data.token)
+      }
+    })
+  };
+
   fetchLocations=()=>{
-    fetch('http://localhost:3000/locations')
+    fetch('http://localhost:3000/api/v1/locations')
     .then(res=>res.json())
     .then(data=>
       this.setState({
@@ -28,7 +73,7 @@ class App extends Component {
     )
   }
   fetchUserLocations=()=>{
-    fetch('http://localhost:3000/user_locations')
+    fetch('http://localhost:3000/api/v1/user_locations')
     .then(res=>res.json())
     .then(data=>
         this.setState({userLocations: data})
@@ -84,6 +129,21 @@ render() {
             />
           )}
         />
+      <Switch>
+        <Route exact path="/" render={()=><Redirect to="/home"/>}/>
+      </Switch>
+      <Route exact={true} path="/signUp" render={()=>(
+          <SignUp
+
+            />
+          )}
+      />
+    <Route exact={true} path="/signIn" render={()=>(
+          <SignIn
+            onLogIn={this.handleLoginSubmit}
+            />
+          )}
+      />
       <Route exact={true} path="/home" render={()=>(
           <Home
             userLocations={this.state.userLocations}

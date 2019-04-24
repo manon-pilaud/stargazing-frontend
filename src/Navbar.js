@@ -7,7 +7,7 @@ export default class coolNavbar extends React.Component {
     return (
       <div>
           <Navbar bg="dark" variant="dark" id="navbar" sticky="top">
-          <Navbar.Brand>StarGazing</Navbar.Brand>
+          <Navbar.Brand>StarGazer</Navbar.Brand>
           <Nav className="mr-auto">
             <Nav.Link><Link className="navlink"  to={'/home'}>Home</Link></Nav.Link>
             <Nav.Link><Link className="navlink" to={'/map'}>StarMap</Link></Nav.Link>

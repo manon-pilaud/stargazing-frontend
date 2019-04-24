@@ -62,3 +62,14 @@
 #form-create-location{
   width:30vw;
 }
+
+#sign-up{
+  width:25vw;
+  color:black;
+  background-color: white;
+  padding:10px;
+  margin:1px;
+  position: absolute;
+  left:35vw;
+  top:35vh;
+}
