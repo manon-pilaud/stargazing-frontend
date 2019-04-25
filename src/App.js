@@ -4,7 +4,7 @@ import Map from './Map'
 import MoonCalendar from './MoonCalendar'
 import Location from './Location'
 import Home from './Home'
-import {Route,Switch,Redirect} from "react-router";
+import {Route,Switch,Redirect,withRouter } from "react-router";
 import Navbar from './Navbar'
 import Trips from './Trips'
 import SignUp from './SignUp'
@@ -41,6 +41,7 @@ class App extends Component {
   }
 
     handleLoginSubmit = (username, password) => {
+      console.log("in handle login submit",username,password)
     fetch(`http://localhost:3000/api/v1/login`, {
       method: "POST",
         headers: {
@@ -57,7 +58,7 @@ class App extends Component {
       if(data.error){
         alert('Incorrect username or password')
       }else{
-        this.setState({currentUser: data.user })
+        this.setState({currentUser: data.userInfo })
         localStorage.setItem("token", data.token)
       }
     })
@@ -132,13 +133,13 @@ render() {
       <Switch>
         <Route exact path="/" render={()=><Redirect to="/home"/>}/>
       </Switch>
-      <Route exact={true} path="/signUp" render={()=>(
+      <Route exact={true} path="/signup" render={()=>(
           <SignUp
 
             />
           )}
       />
-    <Route exact={true} path="/signIn" render={()=>(
+    <Route exact={true} path="/signin" render={()=>(
           <SignIn
             onLogIn={this.handleLoginSubmit}
             />
@@ -168,4 +169,4 @@ render() {
 }
 
 
-export default App;
+export default withRouter(App);

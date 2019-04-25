@@ -13,11 +13,16 @@ export default class SignIn extends React.PureComponent {
       [e.target.name]: e.target.value
     })
   }
+
+  handleSubmit=(e)=>{
+    e.preventDefault()
+    this.props.onLogIn(this.state.username, this.state.password)
+  }
    render() {
      return(
        <div id="sign-up">
        <center><h3>Sign In</h3></center>
-       <Form onSubmit={()=>{this.props.onLogIn(this.state.username, this.state.password)}}>
+       <Form onSubmit={this.handleSubmit}>
          <Form.Group controlId="formBasicUsername">
          <Form.Label>Username</Form.Label>
          <InputGroup>
@@ -30,7 +35,7 @@ export default class SignIn extends React.PureComponent {
              aria-describedby="inputGroupPrepend"
              required
              onChange={this.handleChange}
-             name="password"
+             name="username"
            />
            <Form.Control.Feedback type="invalid">
              Please choose a username.
