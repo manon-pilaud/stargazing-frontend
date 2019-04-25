@@ -3,14 +3,15 @@ import {Button} from 'react-bootstrap'
 
 export default class Location extends React.Component{
    visitLocation=(location)=>{
+      let token = localStorage.getItem('token')
       fetch('http://localhost:3000/api/v1/user_locations',{
         method: "POST",
         headers:{
           "Content-Type" : "application/json",
-          "Accept" : "application/json"
+          "Accept" : "application/json",
+          "Authentication": `Bearer ${token}`
         },
         body: JSON.stringify({
-          user_id: 1,
           location_id: location.id
         })
       }).then(res=>res.json())
