@@ -61,6 +61,13 @@ class App extends Component {
     })
   };
 
+  logOut=()=>{
+    this.setState({
+     currentUser: null
+   })
+   localStorage.clear()
+  }
+
   fetchLocations=()=>{
     fetch('http://localhost:3000/api/v1/locations')
     .then(res=>res.json())
@@ -70,7 +77,7 @@ class App extends Component {
       })
     )
   }
-  
+
   postLocation=(form)=>{
     fetch('http://localhost:3000/locations',{
     method: "POST",
@@ -112,7 +119,9 @@ class App extends Component {
 render() {
     return(
       <div>
-        <Navbar/>
+        <Navbar
+          logOut={this.logOut}
+          />
         <Route exact={true} path="/map" render={()=>(
           <Map
             locations={this.state.locations}
@@ -123,6 +132,7 @@ render() {
       <Switch>
         <Route exact path="/" render={()=><Redirect to="/home"/>}/>
       </Switch>
+
       <Route exact={true} path="/signup" render={()=>(
           <SignUp
 
@@ -135,12 +145,12 @@ render() {
             />
           )}
       />
-      <Route exact={true} path="/home" render={()=>(
-          <Home
-            currentUser={this.state.currentUser}
-            />
-          )}
-        />
+  
+      <Route exact path="/home" render={() => {
+           return this.state.currentUser ? <Home currentUser={this.state.currentUser}/> : <Redirect to='/signin'/>
+         }} />
+
+
       <Route exact={true} path="/location/:id" render={(props)=>{
             let locationUrlId = props.match.params.id
             let locationUrlIdInt = parseInt(locationUrlId)
