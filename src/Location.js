@@ -4,18 +4,23 @@ import {Button} from 'react-bootstrap'
 export default class Location extends React.Component{
    visitLocation=(location)=>{
       let token = localStorage.getItem('token')
-      fetch('http://localhost:3000/api/v1/user_locations',{
-        method: "POST",
-        headers:{
-          "Content-Type" : "application/json",
-          "Accept" : "application/json",
-          "Authentication": `Bearer ${token}`
-        },
-        body: JSON.stringify({
-          location_id: location.id
-        })
-      }).then(res=>res.json())
-      .then(data=>this.props.addUserLocation(data))
+      let alreadyExists = !!this.props.currentUser.locations.find(place=>place.name === location.name)
+      if (!alreadyExists){
+        fetch('http://localhost:3000/api/v1/user_locations',{
+          method: "POST",
+          headers:{
+            "Content-Type" : "application/json",
+            "Accept" : "application/json",
+            "Authentication": `Bearer ${token}`
+          },
+          body: JSON.stringify({
+            location_id: location.id
+          })
+        }).then(res=>res.json())
+        .then(data=>this.props.addUserLocation(data))
+      }else{
+        alert("Already in your locations")
+      }
    }
   render(){
     let {name,description,area,category,country,image,latitude,longitude,rating} = this.props.location

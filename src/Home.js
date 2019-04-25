@@ -6,7 +6,8 @@ export default class Home extends React.PureComponent {
      return(
        <div>
          <Trips
-           userLocations={this.props.userLocations}/>
+           currentUser={this.props.currentUser}
+           />
        </div>
      )
    }

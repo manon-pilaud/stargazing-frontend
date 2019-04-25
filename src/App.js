@@ -12,13 +12,11 @@ import SignIn from './SignIn'
 class App extends Component {
   state={
     currentUser: null,
-    locations: [],
-    userLocations: []
+    locations: []
   }
 
   componentDidMount(){
     this.fetchLocations()
-    this.fetchUserLocations()
     this.fetchCurrentUser()
   }
 
@@ -41,7 +39,6 @@ class App extends Component {
   }
 
     handleLoginSubmit = (username, password) => {
-      console.log("in handle login submit",username,password)
     fetch(`http://localhost:3000/api/v1/login`, {
       method: "POST",
         headers: {
@@ -73,14 +70,7 @@ class App extends Component {
       })
     )
   }
-  fetchUserLocations=()=>{
-    fetch('http://localhost:3000/api/v1/user_locations')
-    .then(res=>res.json())
-    .then(data=>
-        this.setState({userLocations: data})
-    )
-  }
-
+  
   postLocation=(form)=>{
     fetch('http://localhost:3000/locations',{
     method: "POST",
@@ -113,9 +103,9 @@ class App extends Component {
   }
 
   addUserLocation=(newUserLocation)=>{
-    if (!this.state.userLocations.includes(newUserLocation)){
+    if (!this.state.currentUser.locations.includes(newUserLocation.location)){
       this.setState({
-        userLocations: [...this.state.userLocations, newUserLocation]
+        currentUser: {...this.state.currentUser, locations:[...this.state.currentUser.locations,newUserLocation.location]}
       })
     }
   }
@@ -147,7 +137,7 @@ render() {
       />
       <Route exact={true} path="/home" render={()=>(
           <Home
-            userLocations={this.state.userLocations}
+            currentUser={this.state.currentUser}
             />
           )}
         />
@@ -158,6 +148,7 @@ render() {
             return locationInfo?(
               <Location
                 location = {locationInfo}
+                currentUser ={this.state.currentUser}
                 addUserLocation = {this.addUserLocation}/>
           ):null
         }

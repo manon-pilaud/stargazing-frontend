@@ -4,16 +4,16 @@ import {Link} from 'react-router-dom'
 export default class Trips extends React.PureComponent {
 
    render() {
-     return(
+     return !this.props.currentUser?null:(
        <div>
        Saved Locations
-        {this.props.userLocations.map(userLocation=>
+        {this.props.currentUser.locations.map(location=>
             <div>
-              <Link to={`/location/${userLocation.location.id}`}>
+              <Link to={`/location/${location.id}`}>
                 <div>
-                {userLocation.location.name}
+                {location.name}
                 <br/>
-                <img height="150" width="180" src={userLocation.location.image}/>
+                <img height="150" width="180" src={location.image}/>
                 </div>
               </Link>
             </div>
