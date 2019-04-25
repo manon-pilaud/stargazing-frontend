@@ -139,13 +139,11 @@ render() {
             />
           )}
       />
-    <Route exact={true} path="/signin" render={()=>(
-          <SignIn
-            onLogIn={this.handleLoginSubmit}
-            />
-          )}
-      />
-  
+
+    <Route exact path="/signin" render={() => {
+           return !this.state.currentUser ? <SignIn onLogIn={this.handleLoginSubmit}/> : <Redirect to='/home'/>
+         }} />
+
       <Route exact path="/home" render={() => {
            return this.state.currentUser ? <Home currentUser={this.state.currentUser}/> : <Redirect to='/signin'/>
          }} />
