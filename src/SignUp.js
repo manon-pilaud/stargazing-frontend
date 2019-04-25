@@ -17,6 +17,7 @@ export default class SignUp extends React.PureComponent {
     handleSubmit=()=>{
 
     }
+    
    render() {
      return(
        <div id="sign-up">

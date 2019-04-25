@@ -48,7 +48,7 @@ static getDerivedStateFromProps(nextProps, prevState){
   render() {
     return (
       <div id="form-create-location">
-      <font color="black">
+        <button onClick={this.props.closeForm}>X</button>
       <Form  onSubmit={this.handleSubmit}>
         <Form.Group>
           <Form.Label>Location Name</Form.Label>
@@ -84,7 +84,6 @@ static getDerivedStateFromProps(nextProps, prevState){
           Create Location
         </Button>
     </Form>
-      </font>
       </div>
     )
   }

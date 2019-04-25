@@ -90,11 +90,15 @@ export default class Map extends Component {
         this.setState({viewport});
       }
       mapClicked=(e)=>{
-        if(this.state.createForm === true){
+        if(this.state.createForm === true && e.features[0] !==undefined){
           if(e.features[0].layer.id !== "water"){
             this.setState({clickedMapCoord:e.lngLat})
           }
         }
+      }
+
+      closeForm=()=>{
+         this.setState({createForm: false,clickedMapCoord:""})
       }
 
 
@@ -151,16 +155,11 @@ export default class Map extends Component {
               </Popup>
             :null}
             {this.state.createForm?
-              <Popup tipSize={8}
-                anchor="left"
-                longitude={160.544484}
-                latitude={79.963029}
-                closeOnClick={false}
-                onClose={() => this.setState({createForm: false,clickedMapCoord:""})}
-                >
+              <div className="create_location" style={createLocationStyle}>
                 <AddLocation coordinates={this.state.clickedMapCoord}
-                postLocation={this.props.postLocation}/>
-              </Popup>
+                postLocation={this.props.postLocation}
+                closeForm={this.closeForm}/>
+            </div>
             :null}
           </MapGL>
         );

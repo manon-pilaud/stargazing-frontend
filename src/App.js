@@ -79,7 +79,7 @@ class App extends Component {
   }
 
   postLocation=(form)=>{
-    fetch('http://localhost:3000/locations',{
+    fetch('http://localhost:3000/api/v1/locations',{
     method: "POST",
     headers:{
       "Content-Type" : "application/json",
