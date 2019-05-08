@@ -59,6 +59,7 @@
   color:black;
 }
 
+
 #form-create-location{
   width:30vw;
 }
@@ -72,4 +73,19 @@
   position: absolute;
   left:35vw;
   top:35vh;
+}
+
+#location-card-user{
+  margin:2px;
+
+}
+
+#location-card-user-img{
+  height:25vh;
+  width:20vw;
+}
+
+#remove-location-button{
+  color:grey;
+  margin-left:5px;
 }

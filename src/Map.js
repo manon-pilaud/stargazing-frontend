@@ -100,8 +100,7 @@ export default class Map extends Component {
       closeForm=()=>{
          this.setState({createForm: false,clickedMapCoord:""})
       }
-
-
+  
       render() {
         const { viewport } = this.state;
         return (
@@ -158,7 +157,8 @@ export default class Map extends Component {
               <div className="create_location" style={createLocationStyle}>
                 <AddLocation coordinates={this.state.clickedMapCoord}
                 postLocation={this.props.postLocation}
-                closeForm={this.closeForm}/>
+                closeForm={this.closeForm}
+                />
             </div>
             :null}
           </MapGL>
